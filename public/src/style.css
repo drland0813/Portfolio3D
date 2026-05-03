@@ -17,7 +17,7 @@ canvas {
     font-weight: bold;
     font-size: 24px;
     color: white;
-    pointer-events: none; /* Let clicks pass through to 3D scene */
+    pointer-events: none;
 }
 
 .info-row {
@@ -48,7 +48,7 @@ canvas {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    pointer-events: auto; /* Enable clicks on the button */
+    pointer-events: auto;
     padding: 0;
 }
 
@@ -63,4 +63,38 @@ canvas {
 @keyframes blinkCursor {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 24px;
+    transition: opacity 0.5s ease-out;
+}
+
+.loader {
+    border: 8px solid #333;
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

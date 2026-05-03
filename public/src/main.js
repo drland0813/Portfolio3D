@@ -447,13 +447,29 @@ soundToggleBtn.addEventListener('click', (e) => {
   }
 });
 
-LoadGLTFByPath(islandGroup)
+const loadingScreen = document.getElementById('loading-screen');
+const loadingText = document.getElementById('loading-text');
+
+LoadGLTFByPath(islandGroup, (loaded, total) => {
+    if (total > 0) {
+      const percent = Math.round((loaded / total) * 100);
+      if (loadingText) loadingText.innerText = `Loading Model... ${percent}%`;
+    } else {
+      const mb = (loaded / (1024 * 1024)).toFixed(2);
+      if (loadingText) loadingText.innerText = `Loading Model... ${mb}MB`;
+    }
+  })
   .then(() => {
+    if (loadingScreen) {
+      loadingScreen.style.opacity = '0';
+      setTimeout(() => loadingScreen.style.display = 'none', 500);
+    }
     animate();
     instructionEl.style.display = 'block';
   })
   .catch((error) => {
     console.error('Error loading JSON scene:', error);
+    if (loadingText) loadingText.innerText = 'Error loading model!';
   });
 
 window.addEventListener('resize', onWindowResize, false);
