@@ -452,7 +452,7 @@ const loadingText = document.getElementById('loading-text');
 
 LoadGLTFByPath(islandGroup, (loaded, total) => {
     if (total > 0) {
-      const percent = Math.round((loaded / total) * 100);
+      const percent = Math.min(100, Math.round((loaded / total) * 100));
       if (loadingText) loadingText.innerText = `Loading Model... ${percent}%`;
     } else {
       const mb = (loaded / (1024 * 1024)).toFixed(2);
