@@ -2,4 +2,65 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-};
+}
+
+#info-overlay {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    pointer-events: none; /* Let clicks pass through to 3D scene */
+}
+
+.info-row {
+    background-color: black;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.controls-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#clock {
+    background-color: black;
+    padding: 10px 15px;
+}
+
+.icon-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto; /* Enable clicks on the button */
+    padding: 0;
+}
+
+.icon-btn:hover {
+    background-color: #333;
+}
+
+.cursor {
+    animation: blinkCursor 1s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
